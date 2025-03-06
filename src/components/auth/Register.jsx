@@ -22,7 +22,6 @@ export const Register = () => {
           firstName: firstName,
           lastName: lastName,
           phoneNumber: phoneNumber, 
-          isAdmin: false,
         });
       }
       toast.success("User Registered Successfully!!", {
