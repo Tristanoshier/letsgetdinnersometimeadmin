@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -21,13 +24,12 @@ export const Register = () => {
           email: user.email,
           firstName: firstName,
           lastName: lastName,
-          phoneNumber: phoneNumber, 
+          phoneNumber: phoneNumber,
+          isAdmin: true,
         });
-      }
-      toast.success("User Registered Successfully!!", {
-        position: "top-center",
-      });
 
+        navigate("/login");
+      }
     } catch (error) {
       toast.error(error.message, {
         position: "bottom-center",
@@ -35,71 +37,64 @@ export const Register = () => {
     }
   };
   return (
-    <form onSubmit={handleRegister}>
-      <h3>Sign Up</h3>
+    <div className="login">
+      <form onSubmit={handleRegister}>
+        <h3>Sign Up</h3>
 
-      <div className="mb-3">
-        <label>First name</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="First name"
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-      </div>
+        <div className="mb-3">
+          <label>First name</label>
+          <input
+            type="text"
+            placeholder="First name"
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
 
-      <div className="mb-3">
-        <label>Last name</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Last name"
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </div>
+        <div className="mb-3">
+          <label>Last name</label>
+          <input
+            type="text"
+            placeholder="Last name"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
 
-      <div className="mb-3">
-        <label>Phone number</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Phone number"
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          required
-        />
-      </div>
+        <div className="mb-3">
+          <label>Phone number</label>
+          <input
+            type="text"
+            placeholder="Phone number"
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+          />
+        </div>
 
-      <div className="mb-3">
-        <label>Email address</label>
-        <input
-          type="email"
-          className="form-control"
-          placeholder="Enter email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
+        <div className="mb-3">
+          <label>Email address</label>
+          <input
+            type="email"
+            placeholder="Enter email"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-      <div className="mb-3">
-        <label>Password</label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
+        <div className="mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-      <div className="d-grid">
-        <button type="submit" className="btn btn-primary">
-          Sign Up
-        </button>
-      </div>
-      <p className="forgot-password text-right">
-        Already registered <a href="/login">Login</a>
-      </p>
-    </form>
+        <button type="submit">Sign Up</button>
+        <p>
+          Already registered <a href="/login">Login</a>
+        </p>
+      </form>
+    </div>
   );
 };
