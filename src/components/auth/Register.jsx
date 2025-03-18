@@ -37,7 +37,7 @@ export const Register = () => {
     }
   };
   return (
-    <div className="login">
+    <div className="form-page">
       <form onSubmit={handleRegister}>
         <h3>Sign Up</h3>
 

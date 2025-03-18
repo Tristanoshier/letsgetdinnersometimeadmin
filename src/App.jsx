@@ -15,11 +15,10 @@ import { Home } from "./components/pages/home/Home";
 import { Profile } from "./components/pages/profile/Profile";
 import { AddJob } from "./components/pages/home/Jobs/AddJob";
 
-import { jobInputs } from "./data/formsource";
-
 import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.scss";
+import { EditJob } from "./components/pages/home/Jobs/EditJob";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -44,11 +43,19 @@ function App() {
               }
             />
             <Route path="/jobs">
-            <Route
+              <Route
                 path="add"
                 element={
                   <RequireAuth>
-                    <AddJob inputs={jobInputs} title="Add New Job" />
+                    <AddJob title="Add New Job" />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="edit"
+                element={
+                  <RequireAuth>
+                    <EditJob title="Edit Job" />
                   </RequireAuth>
                 }
               />

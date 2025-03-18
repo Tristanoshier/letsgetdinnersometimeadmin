@@ -37,8 +37,8 @@ export const JobDashboard = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to="/jobs/edit" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
             </Link>
             <div
               className="deleteButton"
@@ -54,7 +54,7 @@ export const JobDashboard = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Job
+        Current Jobs
         <Link to="/jobs/add" className="link">
           Add Job
         </Link>
