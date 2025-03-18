@@ -52,7 +52,7 @@ function App() {
                 }
               />
               <Route
-                path="edit"
+                path="edit/:jobId"
                 element={
                   <RequireAuth>
                     <EditJob title="Edit Job" />

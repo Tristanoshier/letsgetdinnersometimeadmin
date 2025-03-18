@@ -37,7 +37,7 @@ export const JobDashboard = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/jobs/edit" style={{ textDecoration: "none" }}>
+            <Link to={`/jobs/edit/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">Edit</div>
             </Link>
             <div
